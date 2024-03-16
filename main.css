@@ -1,0 +1,270 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --color-main: hsl(248, 84%, 73%);
+  --primary: hsl(248, 83%, 57%);
+  --primary-hover: hsl(248, 83%, 50%);
+  --input: hsl(250, 100%, 96%);
+  --input-hover: hsl(250, 100%, 93%);
+}
+
+body > main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  @media (max-width: 990px) {
+    grid-template-columns: 1fr;
+    .cover {
+      display: none;
+    }
+  }
+}
+
+.cover {
+  min-height: 100vh;
+  background: var(--color-main);
+  background: linear-gradient(30deg, var(--primary-hover) 50%, var(--primary) 78%);
+  position: relative;
+  overflow: hidden;
+
+  .cover__bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    height: 100%;
+    opacity: 0.05;
+    object-fit: cover;
+  }
+
+  .cover__container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 70%;
+    width: min(400px, 80%);
+    padding: 2em;
+    border-radius: 3em;
+    background: rgba(255, 255, 255, 0.19);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.9px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    > p {
+      width: 50%;
+      text-wrap: balance;
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    > img {
+      position: absolute;
+      right: -30%;
+      bottom: 0;
+      display: block;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    > div {
+      position: absolute;
+      top: 60%;
+      left: 0;
+      transform: translateX(-50%);
+      background-color: white;
+      padding: 0.75em;
+      border-radius: 50%;
+      > img {
+        width: 40px;
+        aspect-ratio: 1/1;
+        display: block;
+      }
+    }
+  }
+}
+
+.form {
+  width: min(800px, 100%);
+  margin-inline: auto;
+  padding: clamp(0.75em, 2vw, 2em);
+  margin-bottom: 1em;
+}
+
+.form__header {
+  font-size: 30px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-block: 0.25em;
+  letter-spacing: -1px;
+}
+
+.form__paragraph {
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 1em;
+  text-wrap: balance;
+}
+
+.form__input {
+  position: relative;
+  width: min(364px, 100%);
+  margin: 1em auto;
+
+  > input {
+    padding: 1.25em 1.25em 1.25em 4em;
+    outline: none;
+    border: none;
+    background-color: var(--input);
+    border-radius: 1em;
+    display: block;
+    width: 100%;
+    &::placeholder {
+      color: black;
+    }
+    &:hover,
+    &:focus {
+      background-color: var(--input-hover);
+    }
+  }
+
+  > span {
+    position: absolute;
+    left: 1.5em;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+  }
+}
+
+.form__btn {
+  display: block;
+  margin: 2em auto;
+  padding: 1em 1.5em;
+  border-radius: 1em;
+  border: none;
+  outline: none;
+  text-transform: capitalize;
+  background-color: var(--primary);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+  transition-duration: 150ms;
+
+  &:hover,
+  &:focus {
+    box-shadow: none;
+    background-color: var(--primary-hover);
+  }
+}
+
+.form__breaker {
+  width: min(364px, 100%);
+  margin-inline: auto;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 0.5px;
+    background-color: var(--input);
+    z-index: -1;
+  }
+
+  > p {
+    background-color: white;
+    padding-inline: 0.25em;
+    margin-inline: auto;
+    width: fit-content;
+    span:first-child {
+      font-weight: 700;
+    }
+  }
+}
+
+.form__btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5em;
+  margin-block: 2em;
+
+  > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    padding: 1em 1.25em;
+    outline: none;
+    border: none;
+    border-radius: 1em;
+    width: min(364px, 100%);
+    background-color: white;
+    border: 1px solid var(--input);
+    cursor: pointer;
+    transition-duration: 150ms;
+    &:hover,
+    &:focus {
+      background-color: hsl(0, 0%, 98%);
+    }
+
+    span:last-child {
+      font-weight: 800;
+    }
+
+    img {
+      width: 32px;
+      aspect-ratio: 1/1;
+    }
+  }
+}
+
+/* to test it, just add dir='rtl' to html element in developer tools */
+
+html[dir="rtl"] {
+  .form__input {
+    > input {
+      padding: 1.25em 4em 1.25em 1.25em;
+    }
+    > span {
+      right: 1.25em;
+    }
+  }
+
+  .form__btns {
+    > button {
+      img {
+        order: 2;
+      }
+      span:first-child {
+        order: 1;
+      }
+      span:last-child {
+        order: -1;
+      }
+    }
+  }
+
+  .cover__container {
+    > img {
+      right: 10%;
+    }
+    > div {
+      left: 100%;
+    }
+  }
+}
